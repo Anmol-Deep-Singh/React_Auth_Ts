@@ -3,34 +3,34 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "install:all": "npm run install:frontend && npm run install:backend",
-    "install:frontend": "cd frontend && npm install",
-    "install:backend": "cd backend && npm install",
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && npm run dev",
-    "build": "npm run build:frontend && npm run build:backend",
-    "build:frontend": "cd frontend && npm run build",
-    "build:backend": "cd backend && npm run build",
-    "test": "npm run test:frontend && npm run test:backend",
-    "test:frontend": "cd frontend && npm run test",
-    "test:backend": "cd backend && npm run test",
-    "lint": "npm run lint:frontend && npm run lint:backend",
-    "lint:frontend": "cd frontend && npm run lint",
-    "lint:backend": "cd backend && npm run lint"
+    "install:all": "npm run install:Frontend && npm run install:Backend",
+    "install:Frontend": "cd Frontend && npm install",
+    "install:Backend": "cd Backend && npm install",
+    "dev": "concurrently \"npm run dev:Frontend\" \"npm run dev:Backend\"",
+    "dev:Frontend": "cd Frontend && npm run dev",
+    "dev:Backend": "cd Backend && npm run dev",
+    "build": "npm run build:Frontend && npm run build:Backend",
+    "build:Frontend": "cd Frontend && npm run build",
+    "build:Backend": "cd Backend && npm run build",
+    "test": "npm run test:Frontend && npm run test:Backend",
+    "test:Frontend": "cd Frontend && npm run test",
+    "test:Backend": "cd Backend && npm run test",
+    "lint": "npm run lint:Frontend && npm run lint:Backend",
+    "lint:Frontend": "cd Frontend && npm run lint",
+    "lint:Backend": "cd Backend && npm run lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Anmol-Deep-Singh/test.git"
   },
-  "keywords": ["monorepo", "frontend", "backend"],
+  "keywords": ["monorepo", "Frontend", "Backend"],
   "author": "Anmol Deep Singh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Anmol-Deep-Singh/test/issues"
   },
   "homepage": "https://github.com/Anmol-Deep-Singh/test#readme",
-  "description": "A monorepo for frontend and backend development.",
+  "description": "A monorepo for Frontend and Backend development.",
   "devDependencies": {
     "concurrently": "^8.2.2"
   }
