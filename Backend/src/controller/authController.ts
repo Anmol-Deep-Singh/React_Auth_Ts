@@ -25,8 +25,8 @@ const signup = async (req:Request , res:Response) =>{
             token:token        
         })        
     } catch (e) {
-        const error = Server Crashed ${error};
-        return res.status(500).json({ message:  });
+        const error = `Server crased ${e}`;
+        return res.status(500).json({ message: error });
     }
 }
 
