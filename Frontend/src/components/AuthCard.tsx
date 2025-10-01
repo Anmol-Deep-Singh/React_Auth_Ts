@@ -3,11 +3,15 @@ import { faGithub,faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Button from "./ButtonComp"
 import InputComp from './InputComp';
 import InputBox from "./InputBox"
+import { useEffect } from 'react';
 
 type AuthCardProp={
   Auth?: String;
 }
 const AuthCard: React.FC<AuthCardProp> = ({Auth}) => {
+  useEffect(()=>{
+    
+  },[Auth])
   return (
     <div className="h-full w-1/2 bg-transparent flex flex-col items-center justify-center">
       <h1 className="text-4xl h-[39px] w-full text-center">
@@ -55,7 +59,7 @@ const AuthCard: React.FC<AuthCardProp> = ({Auth}) => {
           border="border-2 border-green-500"
           rounded="rounded-[17px]" // larger rounded
         />
-        } error={"Wrong output"}
+        } error={""}
       />
       <InputBox
         input={

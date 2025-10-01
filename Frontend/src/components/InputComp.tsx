@@ -7,6 +7,7 @@ type InputCompProps = {
   border?: string;                     // border style
   bgColor?: string;                    // background color
   rounded?: string;                    // rounding (sm, md, lg, full)
+  value?: string;
 };
 
 const InputComp = ({
@@ -21,6 +22,7 @@ const InputComp = ({
 }: InputCompProps) => {
   return (
     <input
+      autoComplete="off"
       type={type}
       placeholder={placeholder}
       className={`mt-[10px]
