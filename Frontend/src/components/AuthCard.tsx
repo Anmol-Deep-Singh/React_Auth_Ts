@@ -5,12 +5,14 @@ import InputComp from './InputComp';
 import InputBox from "./InputBox"
 
 type AuthCardProp={
-  title?: String;
+  Auth?: String;
 }
-const AuthCard: React.FC<AuthCardProp> = () => {
+const AuthCard: React.FC<AuthCardProp> = ({Auth}) => {
   return (
-    <div className="h-full w-1/2 bg-orange-500 flex flex-col items-center justify-center">
-      <h1 className="text-4xl h-[39px] w-full text-center">Create your account</h1>
+    <div className="h-full w-1/2 bg-transparent flex flex-col items-center justify-center">
+      <h1 className="text-4xl h-[39px] w-full text-center">
+        {Auth === 'SignUp'?"Create your account":"Welcome Back"}
+        </h1>
       <div className="flex flex-row items-center justify-center my-5">
         <Button 
           type={"A"}
@@ -26,17 +28,32 @@ const AuthCard: React.FC<AuthCardProp> = () => {
         />
       </div>
       <h5 className='text-[12px] h-[14.5px] w-full text-center'>Or Use email for registration</h5>
+      {Auth === 'SignUp'?
+        <InputBox
+          input={
+          <InputComp
+            type="text"
+            placeholder="Name"
+            width="w-80"
+            height="h-12"
+            fontColor="text-red-600"
+            bgColor="bg-transaparent"
+            border="border-2 border-green-500"
+            rounded="rounded-[13px]" // larger rounded
+          />
+          } error={"Wrong output"}
+        />: null}
       <InputBox
         input={
         <InputComp
-          type="password"
-          placeholder="Enter password"
+          type="text"
+          placeholder="Email"
           width="w-80"
           height="h-12"
           fontColor="text-red-600"
           bgColor="bg-transaparent"
           border="border-2 border-green-500"
-          rounded="rounded-full" // larger rounded
+          rounded="rounded-[17px]" // larger rounded
         />
         } error={"Wrong output"}
       />
@@ -44,34 +61,20 @@ const AuthCard: React.FC<AuthCardProp> = () => {
         input={
         <InputComp
           type="password"
-          placeholder="Enter password"
+          placeholder="Password"
           width="w-80"
           height="h-12"
           fontColor="text-red-600"
           bgColor="bg-transaparent"
           border="border-2 border-green-500"
-          rounded="rounded-full" // larger rounded
-        />
-        } error={"Wrong output"}
-      />
-      <InputBox
-        input={
-        <InputComp
-          type="password"
-          placeholder="Enter password"
-          width="w-80"
-          height="h-12"
-          fontColor="text-red-600"
-          bgColor="bg-transaparent"
-          border="border-2 border-green-500"
-          rounded="rounded-full" // larger rounded
+          rounded="rounded-[17px]" // larger rounded
         />
         } error={"Wrong output"}
       />
       <Button 
         type={"B"}
         color={"var(--main1)"}
-        text={"Signin"}
+        text={Auth === 'SignUp' ? "SignUp" : "SignIn"}
       />
     </div>
   )

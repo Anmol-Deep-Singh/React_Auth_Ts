@@ -5,9 +5,9 @@ type InputBoxProp={
 }
 const InputBox: React.FC<InputBoxProp> = ({input,error}) => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center mb-[8px]">
       {input}
-      <div className="w-full text-left pl-3">
+      <div className="w-full h-[20px] text-left pl-3">
         <span className="text-red-500 text-sm">{error}</span>
       </div>
     </div>
