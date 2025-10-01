@@ -42,19 +42,24 @@
 
 :root {
   --dark_background: 0,0,0;
-  --light_background: 255,255,255;
   --dark_font: 255,255,255;
-  --light_font: 0,0,0;
   --dark_border: 255,255,255;
-  --light_border: 0,0,0;
-}
-body {
-  display: block;
-  width: 100%;        /* full viewport width */
-  min-height: 100dvh;   /* full viewport height */
-  font-family: Arial, sans-serif;
-}
 
+  --light_background: 255,255,255;
+  --light_font: 0,0,0;
+  --light_border: 0,0,0;
+
+  /* purple */
+  --purple1:rgb(228, 18, 228);
+  --purple2:rgb(189, 10, 189);
+  --purple3:rgb(67, 3, 67);
+
+  /* blue */
+  --blue1:rgb(10, 10, 215);
+  --blue2:rgb(10, 36, 151);
+  --blue3:rgb(183, 180, 193);
+
+}
 .dark {
   background-color: rgb(var(--dark_background));
   color: rgb(var(--dark_font));
@@ -65,6 +70,26 @@ body {
   background-color: rgb(var(--light_background));
   color: rgb(var(--light_font));
   border: rgb(var(--light_border));
+}
+
+.theme_purple_dark{
+  --main1:rgb(228, 18, 228);
+  --main2:rgb(189, 10, 189);
+  --main3:rgb(67, 3, 67);
+}
+
+.theme_purple_light{
+  --main1:rgb(67, 3, 67);
+  --main2:rgb(189, 10, 189);
+  --main3:rgb(228, 18, 228);
+}
+
+body {
+  display: block;
+  width: 100%;        
+  min-height: 100dvh; 
+  font-family: Arial, sans-serif;
+  background-color: var(--main1)
 }
 @layer base {
   * {
