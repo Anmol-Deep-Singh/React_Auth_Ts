@@ -40,9 +40,9 @@ const AuthCard: React.FC<AuthCardProp> = ({Auth}) => {
             placeholder="Name"
             width="w-80"
             height="h-12"
-            fontColor="text-red-600"
-            bgColor="bg-transaparent"
-            border="border-2 border-green-500"
+            fontColor="text-[var(--text2)]"
+            bgColor="bg-[var(--inputbox)]"
+            border="border-2 border-transparent"
             rounded="rounded-[13px]" // larger rounded
           />
           } error={"Wrong output"}
@@ -54,9 +54,9 @@ const AuthCard: React.FC<AuthCardProp> = ({Auth}) => {
           placeholder="Email"
           width="w-80"
           height="h-12"
-          fontColor="text-red-600"
-          bgColor="bg-transaparent"
-          border="border-2 border-green-500"
+          fontColor="text-[var(--text2)]"
+          bgColor="bg-[var(--inputbox)]"
+          border="border-2 border-transparent"
           rounded="rounded-[17px]" // larger rounded
         />
         } error={""}
@@ -68,9 +68,9 @@ const AuthCard: React.FC<AuthCardProp> = ({Auth}) => {
           placeholder="Password"
           width="w-80"
           height="h-12"
-          fontColor="text-red-600"
-          bgColor="bg-transaparent"
-          border="border-2 border-green-500"
+          fontColor="text-[var(--text2)]"
+          bgColor="bg-[var(--inputbox)]"
+          border="border-2 border-transparent"
           rounded="rounded-[17px]" // larger rounded
         />
         } error={"Wrong output"}

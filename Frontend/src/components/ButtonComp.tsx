@@ -3,6 +3,7 @@ import type { ReactNode, MouseEventHandler } from "react";
 type ButtonProp = {
   type: string;
   color: string;
+  bordercolor?: string;
   mainimage?: ReactNode;
   leftimage?: ReactNode;
   rightimage?: ReactNode;
@@ -14,6 +15,7 @@ type ButtonProp = {
 const ButtonComp: React.FC<ButtonProp> = ({
   type,
   color,
+  bordercolor,
   mainimage,
   leftimage,
   rightimage,
@@ -31,7 +33,7 @@ const ButtonComp: React.FC<ButtonProp> = ({
           onClick={onClick}
           onDoubleClick={onDoubleClick}
           className={`${BaseStyle} h-[32px] w-[110px] text-xs font-[400]`}
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: color , borderColor: bordercolor, borderWidth: "2px", borderStyle: "solid" }}
         >
           {leftimage && <div>{leftimage}</div>}
           {mainimage && <div className="mx-[4px]">{mainimage}</div>}
@@ -39,7 +41,17 @@ const ButtonComp: React.FC<ButtonProp> = ({
           {rightimage && <div>{rightimage}</div>}
         </button>
       );
-
+    case "B":
+      return(
+        <button
+          onClick={onClick}
+          onDoubleClick={onDoubleClick}
+          className={`${BaseStyle} h-[32px] w-[110px] text-xs font-[400]`}
+          style={{ backgroundColor: color, borderColor: bordercolor, borderWidth: "2px", borderStyle: "solid" }}
+        >
+          {text && <div className="ml-[6px] text-[16px]">{text}</div>}
+        </button>
+      )
     default:
       return (
         <button

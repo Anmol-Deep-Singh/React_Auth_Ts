@@ -6,12 +6,12 @@ const Auth = () => {
   const[Auth,SetAuth] = useState('SignUp');
   return (
     <> 
-      <div className="h-screen min-h-screen w-full flex flex-col justify-center items-center top-0 left-0 bg-transp">
-        <div className="relative overflow-hidden w-[768px] max-w-full min-h-[480px] rounded-[30px] shadow-[0_5px_15px_rgba(0,0,0,0.35)] flex flex-row flex-start bg-transparent border-2 border-solid border-blue-600 ">
-          <div className="h-full w-1/2 rounded-[0px_150px_100px_0px] flex flex-col justify-center items-center bg-pink-500">
+      <div className="h-screen min-h-screen w-full flex flex-col justify-center items-center top-0 left-0 bg-transparent">
+        <div className="relative overflow-hidden w-[768px] max-w-full min-h-[480px] rounded-[30px] shadow-[0_5px_15px_rgba(0,0,0,0.35)] flex flex-row flex-start bg-[var(--card)]">
+          <div className="h-full w-1/2 rounded-[0px_150px_100px_0px] flex flex-col justify-center items-center bg-[var(--sidecard)] text-[rgb(var(--purple_white))]">
             <h1 className="text-4xl h-[39px] w-full text-center mb-[20px]">Welcome back</h1>
             <p className="mb-[20px]">This is Your Auth System for the Application</p>
-            <ButtonComp type={"B"} color={"var(--main1)"} 
+            <ButtonComp type={"B"} color={"transparent"} bordercolor={"rgb(var(--purple_white))"}
             text={Auth === 'SignUp' ? "SignIn" : "SignUp"}
             onClick={Auth === 'SignUp' ?
               ()=>{SetAuth('SignIn')}:

@@ -4,7 +4,7 @@ import Project from "./pages/Project"
 import IsLogin from "./util/IsLogin"
 import { useState,useEffect } from "react"
 const App = () => {
-  const [theme,Settheme] = useState('theme_purple_dark dark');
+  const [theme,Settheme] = useState('theme_purple_light light');
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);

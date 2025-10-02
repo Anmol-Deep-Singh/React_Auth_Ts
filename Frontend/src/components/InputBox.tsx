@@ -8,7 +8,7 @@ const InputBox: React.FC<InputBoxProp> = ({input,error}) => {
     <div className="flex flex-col items-center justify-center mb-[8px]">
       {input}
       <div className="w-full h-[20px] text-left pl-3">
-        <span className="text-red-500 text-sm">{error}</span>
+        <span className="text-red-800 text-sm">{error}</span>
       </div>
     </div>
   )

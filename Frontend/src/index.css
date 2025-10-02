@@ -41,56 +41,50 @@
 /* Ensure variables initialize on the root element */
 
 :root {
-  --dark_background: 0,0,0;
-  --dark_font: 255,255,255;
-  --dark_border: 255,255,255;
-
-  --light_background: 255,255,255;
-  --light_font: 0,0,0;
-  --light_border: 0,0,0;
-
-  /* purple */
-  --purple1:rgb(228, 18, 228);
-  --purple2:rgb(189, 10, 189);
-  --purple3:rgb(67, 3, 67);
-
-  /* blue */
-  --blue1:rgb(10, 10, 215);
-  --blue2:rgb(10, 36, 151);
-  --blue3:rgb(183, 180, 193);
-
+/* purple */
+--purple1:202, 168, 245;
+--purple2:153, 132, 212;
+--purple3:89, 46, 131;
+--purple4:35, 12, 51;
+--purple_white:245, 245, 245;
+--purple_black:12, 12, 12;
+--grey1:201, 205, 207;
+--grey2:68, 68, 78;
 }
 .dark {
-  background-color: rgb(var(--dark_background));
-  color: rgb(var(--dark_font));
-  border: rgb(var(--dark_border));
+  color: rgb(var(--purple_white));
 }
 
 .light{
-  background-color: rgb(var(--light_background));
-  color: rgb(var(--light_font));
-  border: rgb(var(--light_border));
+  color: rgb(var(--purple_black));
+}
+.theme_purple_light {
+--bag:rgb(var(--purple1));
+--sidecard:rgb(var(--purple2));
+--card:rgb(var(--purple_white));
+--text1:rgb(var(--purple_white));
+--text2:rgb(var(--purple_black));
+--inputbox:rgb(var(--grey1));
 }
 
-.theme_purple_dark{
-  --main1:rgb(228, 18, 228);
-  --main2:rgb(189, 10, 189);
-  --main3:rgb(67, 3, 67);
+.theme_purple_dark {
+--bag:rgb(var(--purple4));
+--sidecard:rgb(var(--purple3));
+--card:rgb(var(--purple_black));
+--text1:rgb(var(--purple_black));
+--text2:rgb(var(--purple_white));
+--inputbox:rgb(var(--grey2));
 }
 
-.theme_purple_light{
-  --main1:rgb(67, 3, 67);
-  --main2:rgb(189, 10, 189);
-  --main3:rgb(228, 18, 228);
-}
 
 body {
   display: block;
   width: 100%;        
   min-height: 100dvh; 
   font-family: Arial, sans-serif;
-  background-color: var(--main1)
+  background-color:var(--bag);
 }
+
 @layer base {
   * {
     @apply m-0 p-0 border-border outline-ring/50;
