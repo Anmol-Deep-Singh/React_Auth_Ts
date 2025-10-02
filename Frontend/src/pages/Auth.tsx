@@ -12,7 +12,7 @@ const Auth = () => {
             <h1 className="text-4xl h-[39px] w-full text-center mb-[20px]">Welcome back</h1>
             <p className="mb-[20px]">This is Your Auth System for the Application</p>
             <ButtonComp type={"B"} color={"transparent"} bordercolor={"rgb(var(--purple_white))"}
-            text={Auth === 'SignUp' ? "SignIn" : "SignUp"}
+            text={Auth === 'SignUp' ? "Sign In" : "Sign Up"}
             onClick={Auth === 'SignUp' ?
               ()=>{SetAuth('SignIn')}:
               ()=>{SetAuth('SignUp')}} />
