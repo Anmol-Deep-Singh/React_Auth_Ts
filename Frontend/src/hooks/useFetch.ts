@@ -14,11 +14,14 @@ const useFetch= ({method,URL,headers,body,dep = []}: UseFetchProps)=>{
         try {
             setLoading(true);
             const response = await fetch(URL,{method,headers,body: body ? JSON.stringify(body) : undefined,})
+            const data = await response.json();
+            console.log(data);
+            Setdata(data);
             if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-            }
             const data = await response.json();
             Setdata(data);
+            throw new Error(`HTTP error! status: ${response.status}`);
+            }
         } catch (error: any) {
             setError(error.message || "Something went wrong");
         }finally{

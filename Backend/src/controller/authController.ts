@@ -12,10 +12,10 @@ const signup = async (req:Request , res:Response) =>{
     try {
         const requiredBody = z.object({
             name: z.string({message: "Invalid name format" }),
-            email: z.email({ message: "Invalid email address" }),
+            email: z.string().email({ message: "Invalid email address" }),
             password: z
                 .string()
-                .min(6, { message: "Password must be at least 5 characters long" })
+                .min(6, { message: "Password must be at least 6 characters long" })
                 .max(50, { message: "Password must be at most 50 characters long" }),
         })
         const parsed = requiredBody.safeParse(req.body);
@@ -40,7 +40,7 @@ const signup = async (req:Request , res:Response) =>{
         })
         const token = jwt.sign({email:email},JWT_SECRET);
         return res.status(200).send({
-            message:"User has been signed in",
+            message:"Account has been created",
             token:token        
         })
                 
@@ -65,7 +65,7 @@ const signin = async(req:Request , res:Response) =>{
     const token = jwt.sign({email:email},JWT_SECRET);
 
     res.status(200).send({
-        message:"User has been signed in",
+        message:"Signed in successfully",
         token:token        
     })    
 }

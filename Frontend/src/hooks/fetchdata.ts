@@ -16,12 +16,13 @@ export const fetchdata=async({method,URL,headers,body}: FetchProps)=>{
             body: body ? JSON.stringify(body) : undefined,
         });
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            return { data, error:`HTTP error! status: ${response.status}` };
         }
 
         const data = await response.json();
         return { data, error: null };
     } catch (error: any) {
-        return { data: null, error: error.message || "Something went wrong" };        
+        return { data: null , error: error.message || "Something went wrong" };    
     }
 }

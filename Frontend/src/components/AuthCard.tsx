@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { fetchdata } from '../hooks/fetchdata';
+import toast from 'react-hot-toast';
+import callToast from '../hooks/callToast';
 
 const URL = "http://localhost:3000/api/auth/"
 const schema = z.object({
@@ -41,25 +43,29 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
   });
 
   const onSubmit = async (formdata: FormData) => {
-    console.log("✅ Valid form:", formdata);
     if(Auth === 'SignUp'){
-      const {data,error} = await fetchdata({
+      const promise = fetchdata({
         method:"POST",
         URL:URL+"signup",
         body:formdata,
       })
-      console.log(data);
-      console.log(error);
+      callToast({kind:"A",promise:promise})
+      const {data,error} = await promise;
+      const{token} = data;
+      localStorage.setItem("token",token);
+      
     }else{
-        const {data,error} = await fetchdata({
-          method:"POST",
-          URL:URL+"signin",
-          body:formdata,
-        })
-        console.log(data);
-        console.log(error);
+      const promise = fetchdata({
+        method:"POST",
+        URL:URL+"signin",
+        body:formdata,
+      })
+      callToast({kind:"A",promise:promise})
+      const {data,error} = await promise;
+      const{token} = data;
+      localStorage.setItem("token",token);
     }
-    inputRefs.forEach((Ref,index)=>{if(Ref.current){Ref.current.value = ""}})
+    //inputRefs.forEach((Ref,index)=>{if(Ref.current){Ref.current.value = ""}})
   };
 
   const handleEnter = (e: KeyboardEvent) => {
