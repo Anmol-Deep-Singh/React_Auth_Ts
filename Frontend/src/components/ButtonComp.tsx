@@ -1,19 +1,21 @@
 import type { ReactNode, MouseEventHandler } from "react";
 
 type ButtonProp = {
-  type: string;
+  type?: "submit" | "reset" | "button",
+  kind: string;
   color: string;
   bordercolor?: string;
   mainimage?: ReactNode;
   leftimage?: ReactNode;
   rightimage?: ReactNode;
   text?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;       // single click
-  onDoubleClick?: MouseEventHandler<HTMLButtonElement>; // double click
+  onClick?: MouseEventHandler<HTMLButtonElement>;       
+  onDoubleClick?: MouseEventHandler<HTMLButtonElement>; 
 };
 
 const ButtonComp: React.FC<ButtonProp> = ({
   type,
+  kind,
   color,
   bordercolor,
   mainimage,
@@ -26,10 +28,11 @@ const ButtonComp: React.FC<ButtonProp> = ({
   const BaseStyle = `flex flex-row items-center justify-center ml-[5px] p-2 
     hover:scale-[1.02] transition-transform duration-200 rounded-[8px] cursor-pointer`;
 
-  switch (type) {
+  switch (kind) {
     case "A":
       return (
         <button
+          type={type}
           onClick={onClick}
           onDoubleClick={onDoubleClick}
           className={`${BaseStyle} h-[32px] w-[110px] text-xs font-[400]`}

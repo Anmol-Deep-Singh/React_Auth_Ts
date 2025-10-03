@@ -9,10 +9,11 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const signup = async (req, res) => {
     try {
         const requiredBody = z.object({
+            name: z.string({ message: "Invalid name format" }),
             email: z.email({ message: "Invalid email address" }),
             password: z
                 .string()
-                .min(5, { message: "Password must be at least 5 characters long" })
+                .min(6, { message: "Password must be at least 5 characters long" })
                 .max(50, { message: "Password must be at most 50 characters long" }),
         });
         const parsed = requiredBody.safeParse(req.body);
@@ -22,13 +23,14 @@ const signup = async (req, res) => {
                 error: parsed.error
             });
         }
-        const { email, password } = req.body;
+        const { name, email, password } = req.body;
         const exist = await userModel.findOne({ email });
         if (exist) {
             return res.status(400).json({ message: "User already exists" });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         const newuser = await userModel.create({
+            name: name,
             email: email,
             password: hashedPassword
         });

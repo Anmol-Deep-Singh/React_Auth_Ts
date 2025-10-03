@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 type InputCompProps = {
   type: "text" | "email" | "password";
@@ -10,7 +10,7 @@ type InputCompProps = {
   bgColor?: string;
   rounded?: string;
   value?: string;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const InputComp = forwardRef<HTMLInputElement, InputCompProps>(
   (
@@ -24,24 +24,25 @@ const InputComp = forwardRef<HTMLInputElement, InputCompProps>(
       bgColor,
       rounded,
       value,
+      ...rest
     },
     ref
   ) => {
     return (
       <input
-        ref={ref}  
+        ref={ref}   // ✅ forward the ref properly
         autoComplete="off"
         type={type}
         placeholder={placeholder}
         defaultValue={value}
-        className={`mt-[10px]
-          px-3 outline-none
-          font-bold placeholder:font-bold
-          ${width ?? ""} ${height ?? ""} ${fontColor ?? ""} ${border ?? ""} ${bgColor ?? ""} ${rounded ?? ""}
-        `}
+        className={`mt-[10px] px-3 outline-none font-bold placeholder:font-bold
+          ${width ?? ""} ${height ?? ""} ${fontColor ?? ""} ${border ?? ""} ${bgColor ?? ""} ${rounded ?? ""}`}
+        {...rest}
       />
     );
   }
 );
+
+InputComp.displayName = "InputComp"; // ✅ helps TS + React DevTools
 
 export default InputComp;
