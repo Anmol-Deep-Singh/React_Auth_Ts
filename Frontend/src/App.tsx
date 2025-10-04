@@ -14,9 +14,8 @@ const App = () => {
     <>
     <Toaster/>
     <Routes>
-      <Route path="/" element={<Navigate to="/auth" />} />
+      <Route path="/" element={<IsLogin><Project /></IsLogin>} />
       <Route path="/auth" element={<Auth />}/>
-      <Route path="/:project" element={<IsLogin><Project /></IsLogin>}/>
     </Routes>
     </>
   )

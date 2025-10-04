@@ -7,8 +7,8 @@ type ProtectedRouteProps = {
 
 const IsLogin = ({ children }: ProtectedRouteProps) => {
   const token = localStorage.getItem("token"); 
-  if (!token) {
-    return <Navigate to="/login" replace />;
+  if (token === undefined || !token) {
+    return <Navigate to="/auth" replace />;
   }
 
   return children; 

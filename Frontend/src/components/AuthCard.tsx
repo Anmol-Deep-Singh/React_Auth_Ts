@@ -8,8 +8,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { fetchdata } from '../hooks/fetchdata';
-import toast from 'react-hot-toast';
 import callToast from '../hooks/callToast';
+import toast from 'react-hot-toast';
 
 const URL = "http://localhost:3000/api/auth/"
 const schema = z.object({
@@ -94,7 +94,9 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
       }
     }
   };
-
+  const Servicedown=()=>{
+    callToast({kind:"B",text:"Service down",basic:"error"});
+  }
   useEffect(() => {
     window.addEventListener("keydown", handleEnter);
     return () => window.removeEventListener("keydown", handleEnter);
@@ -118,10 +120,10 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
       </h1>
 
       <div className="flex flex-row items-center justify-center my-5">
-        <Button kind={"A"} color={"var(--main3)"}
+        <Button type={"button"} kind={"A"} color={"var(--main3)"} onClick={()=>{callToast({kind:"B",text:"Service down",basic:"error"})}}
           leftimage={<FontAwesomeIcon icon={faGithub} className="text-[16px]" />}
           text={"Github"} />
-        <Button kind={"A"} color={"var(--main3)"}
+        <Button type={"button"} kind={"A"} color={"var(--main3)"} onClick={()=>{callToast({kind:"B",text:"Service down",basic:"error"})}}
           leftimage={<FontAwesomeIcon icon={faGoogle} className="text-[16px]" />}
           text={"Google"} />
       </div>
