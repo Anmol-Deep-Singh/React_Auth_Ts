@@ -9,63 +9,82 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { fetchdata } from '../hooks/fetchdata';
 import callToast from '../hooks/callToast';
-import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 const URL = "http://localhost:3000/api/auth/"
-const schema = z.object({
-  name: z.string().min(1, "Name is required"),
+
+// 🔹 Schema: name optional, enforced only on SignUp
+const baseSchema = z.object({
+  name: z.string().optional(),
   email: z.string().email("Invalid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-type FormData = z.infer<typeof schema>;
 type AuthCardProp = {
-  Auth?: String;
+  Auth?: string;
 };
 
 const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
+  const navigate = useNavigate();
   const inputRefs = useRef([
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
   ]).current;
 
+  // schema refined depending on Auth
+  const schema = baseSchema.superRefine((data, ctx) => {
+    if (Auth === "SignUp" && !data.name?.trim()) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["name"],
+        message: "Name is required",
+      });
+    }
+  });
+
+  type FormData = z.infer<typeof schema>;
+
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
+    shouldUnregister: true, // important when toggling SignIn/SignUp
   });
 
   // extract refs from register
-  const { ref: nameRef, ...nameReg } = register("name", { required: "Name is required" });
-  const { ref: emailRef, ...emailReg } = register("email", { required: "Email is required" });
-  const { ref: passRef, ...passReg } = register("password", {
-    required: "Password is required",
-    minLength: { value: 6, message: "Password must be at least 6 chars" },
-  });
+  const { ref: nameRef, ...nameReg } = register("name");
+  const { ref: emailRef, ...emailReg } = register("email");
+  const { ref: passRef, ...passReg } = register("password");
 
   const onSubmit = async (formdata: FormData) => {
-    if(Auth === 'SignUp'){
+    if (Auth === 'SignUp') {
       const promise = fetchdata({
-        method:"POST",
-        URL:URL+"signup",
-        body:formdata,
-      })
-      callToast({kind:"A",promise:promise})
-      const {data,error} = await promise;
-      const{token} = data;
-      localStorage.setItem("token",token);
-      
-    }else{
+        method: "POST",
+        URL: URL + "signup",
+        body: formdata,
+      });
+      callToast({ kind: "A", promise: promise });
+      const { data, error } = await promise;
+      if (!error) {
+        const { token } = data;
+        localStorage.setItem("token", token);
+        navigate("/");
+      } else {
+        callToast({ kind: "B", text: "Service down", basic: "error" });
+      }
+    } else {
       const promise = fetchdata({
-        method:"POST",
-        URL:URL+"signin",
-        body:formdata,
-      })
-      callToast({kind:"A",promise:promise})
-      const {data,error} = await promise;
-      const{token} = data;
-      localStorage.setItem("token",token);
+        method: "POST",
+        URL: URL + "signin",
+        body: formdata,
+      });
+      callToast({ kind: "A", promise: promise });
+      const { data, error } = await promise;
+      if (!error) {
+        const { token } = data;
+        localStorage.setItem("token", token);
+        navigate("/");
+      }
     }
-    //inputRefs.forEach((Ref,index)=>{if(Ref.current){Ref.current.value = ""}})
   };
 
   const handleEnter = (e: KeyboardEvent) => {
@@ -81,7 +100,9 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
         return;
       }
       if (index + 1 === inputRefs.length) {
-        (active.form as HTMLFormElement)?.requestSubmit(); 
+        console.log("Auth mode:", Auth);
+        const form = active.closest("form");
+        form?.requestSubmit(); 
       } else {
         inputRefs[index + 1].current?.focus();
       }
@@ -94,9 +115,11 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
       }
     }
   };
-  const Servicedown=()=>{
-    callToast({kind:"B",text:"Service down",basic:"error"});
-  }
+
+  const Servicedown = () => {
+    callToast({ kind: "B", text: "Service down", basic: "error" });
+  };
+
   useEffect(() => {
     window.addEventListener("keydown", handleEnter);
     return () => window.removeEventListener("keydown", handleEnter);
@@ -120,10 +143,10 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
       </h1>
 
       <div className="flex flex-row items-center justify-center my-5">
-        <Button type={"button"} kind={"A"} color={"var(--main3)"} onClick={()=>{callToast({kind:"B",text:"Service down",basic:"error"})}}
+        <Button type={"button"} kind={"A"} color={"var(--main3)"} onClick={() => { Servicedown() }}
           leftimage={<FontAwesomeIcon icon={faGithub} className="text-[16px]" />}
           text={"Github"} />
-        <Button type={"button"} kind={"A"} color={"var(--main3)"} onClick={()=>{callToast({kind:"B",text:"Service down",basic:"error"})}}
+        <Button type={"button"} kind={"A"} color={"var(--main3)"} onClick={() => { Servicedown() }}
           leftimage={<FontAwesomeIcon icon={faGoogle} className="text-[16px]" />}
           text={"Google"} />
       </div>
@@ -138,8 +161,8 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
             <InputComp
               {...nameReg}
               ref={(el) => {
-                nameRef(el);             // ✅ give ref to RHF
-                inputRefs[0].current = el; // ✅ keep your own ref
+                nameRef(el);
+                inputRefs[0].current = el;
               }}
               type="text"
               placeholder="Name"

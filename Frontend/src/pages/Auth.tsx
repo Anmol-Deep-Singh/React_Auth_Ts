@@ -3,7 +3,7 @@ import AuthCard from "../components/AuthCard"
 import ButtonComp from "../components/ButtonComp";
 
 const Auth = () => {
-  const[Auth,SetAuth] = useState('SignUp');
+  const [Auth, SetAuth] = useState<'SignIn' | 'SignUp'>('SignUp');
   return (
     <> 
       <div className="h-screen min-h-screen w-full flex flex-col justify-center items-center top-0 left-0 bg-transparent">

@@ -16,7 +16,8 @@ const callToast = ({ kind, promise, text, basic }: ToastProp) => {
         (async () => {
           const res = await promise;
           if (res?.error) {
-            throw new Error(res.data.message);
+            console.log(res)
+            throw new Error(res.data? res.data.message?res.data.message:res.data :"Something went wrong");
           }
           console.log(res);
           return res;

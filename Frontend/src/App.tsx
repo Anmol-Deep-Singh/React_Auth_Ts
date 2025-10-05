@@ -1,7 +1,7 @@
 import { Route,Routes,Navigate} from "react-router-dom"
 import Auth from "./pages/Auth"
 import Project from "./pages/Project"
-import IsLogin from "./util/IsLogin"
+import {IsLogin,IsLogout} from "./util/IsLogin"
 import { useState,useEffect } from "react"
 import {Toaster} from 'react-hot-toast';
 
@@ -15,7 +15,7 @@ const App = () => {
     <Toaster/>
     <Routes>
       <Route path="/" element={<IsLogin><Project /></IsLogin>} />
-      <Route path="/auth" element={<Auth />}/>
+      <Route path="/auth" element={<IsLogout><Auth /></IsLogout>} />
     </Routes>
     </>
   )

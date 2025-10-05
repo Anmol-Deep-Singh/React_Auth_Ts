@@ -13,4 +13,13 @@ const IsLogin = ({ children }: ProtectedRouteProps) => {
 
   return children; 
 };
-export default IsLogin;
+
+const IsLogout= ({ children }: ProtectedRouteProps) => {
+  const token = localStorage.getItem("token"); 
+  if (!(token === undefined || !token)) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children; 
+};
+export {IsLogin,IsLogout};
