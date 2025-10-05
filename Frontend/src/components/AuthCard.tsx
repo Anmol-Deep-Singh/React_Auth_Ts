@@ -97,11 +97,10 @@ const AuthCard: React.FC<AuthCardProps> = ({ Auth,SetAuth }: AuthCardProps) => {
       const index = inputRefs.findIndex(ref => ref.current === active);
       if (index === -1) return;
       if (!active.value.trim()) {
-        console.log("Please enter a value before moving on");
+        callToast({ kind: "B", text: "Please enter a value before moving on", basic: "error" });
         return;
       }
       if (index + 1 === inputRefs.length) {
-        console.log("Auth mode:", Auth);
         const form = active.closest("form");
         form?.requestSubmit(); 
       } else {

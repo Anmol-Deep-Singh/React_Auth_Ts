@@ -15,7 +15,6 @@ const useFetch= ({method,URL,headers,body,dep = []}: UseFetchProps)=>{
             setLoading(true);
             const response = await fetch(URL,{method,headers,body: body ? JSON.stringify(body) : undefined,})
             const data = await response.json();
-            console.log(data);
             Setdata(data);
             if (!response.ok) {
             const data = await response.json();

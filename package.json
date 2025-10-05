@@ -8,22 +8,17 @@
     "install:Backend": "cd Backend && npm install",
     "dev": "concurrently \"npm run dev:Frontend\" \"npm run dev:Backend\"",
     "dev:Frontend": "cd Frontend && npm run dev",
-    "dev:Backend": "cd Backend && npm run dev",
-    "build": "npm run build:Frontend && npm run build:Backend",
-    "build:Frontend": "cd Frontend && npm run build",
-    "build:Backend": "cd Backend && npm run build",
-    "test": "npm run test:Frontend && npm run test:Backend",
-    "test:Frontend": "cd Frontend && npm run test",
-    "test:Backend": "cd Backend && npm run test",
-    "lint": "npm run lint:Frontend && npm run lint:Backend",
-    "lint:Frontend": "cd Frontend && npm run lint",
-    "lint:Backend": "cd Backend && npm run lint"
+    "dev:Backend": "cd Backend && npm run dev"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Anmol-Deep-Singh/test.git"
   },
-  "keywords": ["monorepo", "Frontend", "Backend"],
+  "keywords": [
+    "monorepo",
+    "Frontend",
+    "Backend"
+  ],
   "author": "Anmol Deep Singh",
   "license": "ISC",
   "bugs": {
