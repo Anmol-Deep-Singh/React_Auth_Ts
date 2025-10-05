@@ -30,7 +30,8 @@ const Auth = () => {
               onClick={Auth === "SignUp" ? () => SetAuth("SignIn") : () => SetAuth("SignUp")}
             />
           </div>
-          <AuthCard Auth={Auth} />
+          <AuthCard Auth={Auth} SetAuth={SetAuth} />
+
         </div>
       </div>
     </>

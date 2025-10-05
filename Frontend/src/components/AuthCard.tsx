@@ -20,11 +20,12 @@ const baseSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-type AuthCardProp = {
-  Auth?: string;
+type AuthCardProps = {
+  Auth: "SignIn" | "SignUp";
+    SetAuth: React.Dispatch<React.SetStateAction<"SignIn" | "SignUp">>
 };
 
-const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
+const AuthCard: React.FC<AuthCardProps> = ({ Auth,SetAuth }: AuthCardProps) => {
   const navigate = useNavigate();
   const inputRefs = useRef([
     useRef<HTMLInputElement>(null),
@@ -225,6 +226,12 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
         color={"var(--main1)"}
         text={Auth === 'SignUp' ? "Sign Up" : "Sign In"}
       />
+      <h3 className="block md:hidden mt-2">
+        {Auth === "SignUp" ?"Already have an account?":"Don't have an account "}
+        <button type="button" className="underline text-blue-500" onClick={Auth === "SignUp" ? () => SetAuth("SignIn") : () => SetAuth("SignUp")}>
+          {Auth === "SignUp" ? "Sign In" : "Sign Up"}
+        </button>
+      </h3>
     </form>
   )
 }
