@@ -54,7 +54,7 @@ const ButtonComp: React.FC<ButtonProp> = ({
         <button
           onClick={onClick}
           onDoubleClick={onDoubleClick}
-          className={`${BaseStyle} ${height} ${width} h-[32px] w-[110px] text-xs font-[400]`}
+          className={`${BaseStyle} ${height} ${width} text-xs font-[400]`}
           style={{ backgroundColor: color, borderColor: bordercolor, borderWidth: "2px", borderStyle: "solid" }}
         >
           {text && <div className="ml-[6px] text-[16px]">{text}</div>}
