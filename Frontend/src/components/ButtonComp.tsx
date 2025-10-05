@@ -9,6 +9,8 @@ type ButtonProp = {
   leftimage?: ReactNode;
   rightimage?: ReactNode;
   text?: string;
+  height?: string;
+  width?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;       
   onDoubleClick?: MouseEventHandler<HTMLButtonElement>; 
 };
@@ -22,6 +24,8 @@ const ButtonComp: React.FC<ButtonProp> = ({
   leftimage,
   rightimage,
   text,
+  height,
+  width,
   onClick,
   onDoubleClick,
 }) => {
@@ -29,13 +33,14 @@ const ButtonComp: React.FC<ButtonProp> = ({
     hover:scale-[1.02] transition-transform duration-200 rounded-[8px] cursor-pointer`;
 
   switch (kind) {
+    // 
     case "A":
       return (
         <button
           type={type}
           onClick={onClick}
           onDoubleClick={onDoubleClick}
-          className={`${BaseStyle} h-[32px] w-[110px] text-xs font-[400]`}
+          className={`${BaseStyle} ${height} ${width} text-xs font-[400]`}
           style={{ backgroundColor: color , borderColor: bordercolor, borderWidth: "2px", borderStyle: "solid" }}
         >
           {leftimage && <div>{leftimage}</div>}
@@ -49,7 +54,7 @@ const ButtonComp: React.FC<ButtonProp> = ({
         <button
           onClick={onClick}
           onDoubleClick={onDoubleClick}
-          className={`${BaseStyle} h-[32px] w-[110px] text-xs font-[400]`}
+          className={`${BaseStyle} ${height} ${width} h-[32px] w-[110px] text-xs font-[400]`}
           style={{ backgroundColor: color, borderColor: bordercolor, borderWidth: "2px", borderStyle: "solid" }}
         >
           {text && <div className="ml-[6px] text-[16px]">{text}</div>}
@@ -60,7 +65,7 @@ const ButtonComp: React.FC<ButtonProp> = ({
         <button
           onClick={onClick}
           onDoubleClick={onDoubleClick}
-          className={`${BaseStyle} h-[32px] w-[140px] text-xs font-[400]`}
+          className={`${BaseStyle} ${height} ${width} text-xs font-[400]`}
           style={{ backgroundColor: color }}
         >
           {leftimage && <div>{leftimage}</div>}

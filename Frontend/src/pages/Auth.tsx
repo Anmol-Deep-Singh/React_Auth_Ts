@@ -25,6 +25,8 @@ const Auth = () => {
             <ButtonComp
               kind="B"
               color="transparent"
+              height={"h-[32px]"} 
+              width={"w-[110px]"}        
               bordercolor="rgb(var(--purple_white))"
               text={Auth === "SignUp" ? "Sign In" : "Sign Up"}
               onClick={Auth === "SignUp" ? () => SetAuth("SignIn") : () => SetAuth("SignUp")}
