@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const URL = "http://localhost:3000/api/auth/"
 
-// 🔹 Schema: name optional, enforced only on SignUp
+
 const baseSchema = z.object({
   name: z.string().optional(),
   email: z.string().email("Invalid email"),
@@ -134,10 +134,9 @@ const AuthCard: React.FC<AuthCardProp> = ({ Auth }) => {
   }, [Auth]);
 
   return (
-    <form
+    <form 
       onSubmit={handleSubmit(onSubmit)}
-      className="h-full w-1/2 bg-transparent flex flex-col items-center justify-center"
-    >
+      className="h-full w-[100%] md:w-1/2 bg-transparent flex flex-col items-center justify-center">
       <h1 className="text-4xl h-[39px] w-full text-center">
         {Auth === 'SignUp' ? "Create your account" : "Welcome Back"}
       </h1>
