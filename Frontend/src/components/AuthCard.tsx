@@ -147,7 +147,7 @@ const AuthCard: React.FC<AuthCardProps> = ({ Auth,SetAuth }: AuthCardProps) => {
           kind={"A"} 
           height={"h-[32px]"}
           width={"w-[110px]"}
-          color={"var(--main3)"} 
+          color={"bg-[var(--main3)]"} 
           onClick={() => { Servicedown() }}
           leftimage={<FontAwesomeIcon icon={faGithub} className="text-[16px]" />}
           text={"Github"} />
@@ -156,7 +156,7 @@ const AuthCard: React.FC<AuthCardProps> = ({ Auth,SetAuth }: AuthCardProps) => {
           kind={"A"} 
           height="h-[32px]"
           width="w-[110px]"
-          color={"var(--main3)"} 
+          color={"bg-[var(--main3)]"} 
           onClick={() => { Servicedown() }}
           leftimage={<FontAwesomeIcon icon={faGoogle} className="text-[16px]" />}
           text={"Google"} />
@@ -236,7 +236,7 @@ const AuthCard: React.FC<AuthCardProps> = ({ Auth,SetAuth }: AuthCardProps) => {
         kind={"B"}
         height={"h-[32px]"}
         width={"w-[110px]"}        
-        color={"var(--main1)"}
+        color={"bg-[var(--main1)]"}
         text={Auth === 'SignUp' ? "Sign Up" : "Sign In"}
       />
       <h3 className="block md:hidden mt-2">

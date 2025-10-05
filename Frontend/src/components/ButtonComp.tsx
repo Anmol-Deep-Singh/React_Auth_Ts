@@ -29,7 +29,7 @@ const ButtonComp: React.FC<ButtonProp> = ({
   onClick,
   onDoubleClick,
 }) => {
-  const BaseStyle = `flex flex-row items-center justify-center ml-[5px] p-2 
+  const BaseStyle = `flex flex-row items-center justify-center ml-[5px] p-2 border-2 border-solid
     hover:scale-[1.02] transition-transform duration-200 rounded-[8px] cursor-pointer`;
 
   switch (kind) {
@@ -40,8 +40,7 @@ const ButtonComp: React.FC<ButtonProp> = ({
           type={type}
           onClick={onClick}
           onDoubleClick={onDoubleClick}
-          className={`${BaseStyle} ${height} ${width} text-xs font-[400]`}
-          style={{ backgroundColor: color , borderColor: bordercolor, borderWidth: "2px", borderStyle: "solid" }}
+          className={`${BaseStyle} ${height} ${width} text-xs font-[400] ${color} ${bordercolor}`}
         >
           {leftimage && <div>{leftimage}</div>}
           {mainimage && <div className="mx-[4px]">{mainimage}</div>}
@@ -54,8 +53,8 @@ const ButtonComp: React.FC<ButtonProp> = ({
         <button
           onClick={onClick}
           onDoubleClick={onDoubleClick}
-          className={`${BaseStyle} ${height} ${width} text-xs font-[400]`}
-          style={{ backgroundColor: color, borderColor: bordercolor, borderWidth: "2px", borderStyle: "solid" }}
+          className={`${BaseStyle} ${height} ${width} text-xs font-[400] ${color} ${bordercolor}`}
+          style={{ borderStyle: "solid" }}
         >
           {text && <div className="ml-[6px] text-[16px]">{text}</div>}
         </button>
@@ -65,8 +64,7 @@ const ButtonComp: React.FC<ButtonProp> = ({
         <button
           onClick={onClick}
           onDoubleClick={onDoubleClick}
-          className={`${BaseStyle} ${height} ${width} text-xs font-[400]`}
-          style={{ backgroundColor: color }}
+          className={`${BaseStyle} ${height} ${width} text-xs font-[400] ${color} ${bordercolor}`}
         >
           {leftimage && <div>{leftimage}</div>}
           {mainimage && <div className="mx-[4px]">{mainimage}</div>}
